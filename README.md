@@ -1,2 +1,2 @@
 # looker-sandbox
-This repository will be mapped to my Looker Sandbox project for testing purposes
+This repository will be used as a test for my Git/Looker integration
