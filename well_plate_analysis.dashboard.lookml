@@ -1,6 +1,6 @@
 ---
-- dashboard: wellplateanalysis
-  title: well-plate-analysis
+- dashboard: well_plate_read_distribution
+  title: Well Plate Read Distribution
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
@@ -122,11 +122,11 @@
     interpolation: linear
     truncate_column_names: false
     listen:
-      ID: well_plate_samples.id
+      Sample ID: well_plate_samples.id
     row: 9
     col: 0
-    width: 24
-    height: 11
+    width: 12
+    height: 10
   - title: Table Heat Map View
     name: Table Heat Map View
     model: well-plate-analysis
@@ -254,14 +254,103 @@
     interpolation: linear
     truncate_column_names: false
     listen:
-      ID: well_plate_samples.id
+      Sample ID: well_plate_samples.id
     row: 0
     col: 0
     width: 24
     height: 9
+  - title: Contribution Per Family Group
+    name: Contribution Per Family Group
+    model: well-plate-analysis
+    explore: well_plate_samples
+    type: looker_funnel
+    fields: [well_plate_samples.count, well_plate_samples.dominant_family]
+    filters: {}
+    sorts: [well_plate_samples.count desc 0]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - measure: count_of_well
+      based_on: well_plate_samples.well
+      expression: ''
+      label: Count of Well
+      type: count_distinct
+      _kind_hint: measure
+      _type_hint: number
+    query_timezone: Europe/Amsterdam
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: hidden
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    color_application:
+      collection_id: 5591d8d1-6b49-4f8e-bafa-b874d82f8eb7
+      palette_id: b88b6581-484a-4f48-b65b-6631648f867e
+      options:
+        steps: 5
+        reverse: true
+    isStepped: false
+    labelOverlap: false
+    up_color: false
+    down_color: false
+    total_color: false
+    show_value_labels: false
+    show_x_axis_ticks: true
+    show_x_axis_label: true
+    x_axis_scale: auto
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_gridlines: true
+    x_axis_gridlines: false
+    show_view_names: false
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    label_density: 25
+    y_axis_combined: true
+    show_null_points: true
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    defaults_version: 1
+    hidden_pivots: {}
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    groupBars: true
+    labelSize: 10pt
+    showLegend: true
+    listen:
+      Sample ID: well_plate_samples.id
+    row: 9
+    col: 12
+    width: 12
+    height: 10
   filters:
-  - name: ID
-    title: ID
+  - name: Sample ID
+    title: Sample ID
     type: field_filter
     default_value: "%I23-1327%"
     allow_multiple_values: true
